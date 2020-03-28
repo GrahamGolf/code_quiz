@@ -15,8 +15,9 @@
 
 
 var startBtn = document.querySelector("#start");
-var questionDiv = documents.querySelector("#question");
-var answerDiv = documents.querySelector("#answer");
+var answersBtn = document.getElementsByClassName("answers");
+var questionDiv = document.querySelector("#question");
+var answerDiv = document.querySelector("#answer");
 var questions = [
     {"question":"what is code?", 
     "answers": ["yes", "no", "maybe"],
@@ -32,17 +33,39 @@ var currentQuestionIndex = 0;
 
 // Write password to the #password input
 function startQuiz() {
-    console.log ("quizStart");
-    for (let index = 0; index < questions.length; index++) {
-    console.log (questions[index].question)
-    }
-}
-function getCurrentQuestion() {
-    for (let index = 0; index < questions.length; index++) {
-    console.log (questions[index].question)
-    }
+    getCurrentQuestion()
+    console.log (answersBtn)
 }
 
+function getCurrentQuestion() {
+    questionDiv.innerHTML = questions[currentQuestionIndex].question
+    var question1 = document.createElement("button");
+    question1.classList.add("answers");
+    var question1Text = document.createTextNode(questions[currentQuestionIndex].answers[0])
+    question1.appendChild(question1Text)
+    answerDiv.appendChild(question1)
+
+    var question2 = document.createElement("button");
+    question2.classList.add("answers");
+    var question2Text = document.createTextNode(questions[currentQuestionIndex].answers[1])
+    question2.appendChild(question2Text)
+    answerDiv.appendChild(question2)
+
+    var question3 = document.createElement("button");
+    question3.classList.add("answers");
+    var question3Text = document.createTextNode(questions[currentQuestionIndex].answers[2])
+    question3.appendChild(question3Text)
+    answerDiv.appendChild(question3)
+}
+
+function checkAnswer() {
+    console.log ("that")
+}
 
 // Add event listener to generate button
 startBtn.addEventListener("click", startQuiz);
+[...document.querySelectorAll('.answers')].forEach(function(item) {
+    item.addEventListener('click', function() {
+      console.log(item.innerHTML);
+    });
+     });
