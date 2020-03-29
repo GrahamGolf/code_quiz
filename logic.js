@@ -28,10 +28,6 @@ var questions = [
 ]
 var currentQuestionIndex = 0;
 
-
-
-
-// Write password to the #password input
 function startQuiz() {
     getCurrentQuestion()
     console.log (answersBtn)
@@ -41,18 +37,21 @@ function getCurrentQuestion() {
     questionDiv.innerHTML = questions[currentQuestionIndex].question
     var question1 = document.createElement("button");
     question1.classList.add("answers");
+    question1.addEventListener("click", checkAnswer);
     var question1Text = document.createTextNode(questions[currentQuestionIndex].answers[0])
     question1.appendChild(question1Text)
     answerDiv.appendChild(question1)
 
     var question2 = document.createElement("button");
     question2.classList.add("answers");
+    question2.addEventListener("click", checkAnswer);
     var question2Text = document.createTextNode(questions[currentQuestionIndex].answers[1])
     question2.appendChild(question2Text)
     answerDiv.appendChild(question2)
 
     var question3 = document.createElement("button");
     question3.classList.add("answers");
+    question3.addEventListener("click", checkAnswer);
     var question3Text = document.createTextNode(questions[currentQuestionIndex].answers[2])
     question3.appendChild(question3Text)
     answerDiv.appendChild(question3)
@@ -60,12 +59,18 @@ function getCurrentQuestion() {
 
 function checkAnswer() {
     console.log ("that")
+    function checkAnswer(event) {
+        if (event.target.innerText === questions[currentQuestionIndex].correct) {
+           else (event.target.innerText === questions[currentQuestionIndex].incorrect)
+        }
+    }
+    //check value of button clicked agaianst the correct answer in the object
+    //update score based on if it matches
+    //increment current questions index by 1
+    //call getCurrentQuestion function again which will promopt new question
+    //put in if statement to chekc if there are more questions...if not end game
 }
 
 // Add event listener to generate button
 startBtn.addEventListener("click", startQuiz);
-[...document.querySelectorAll('.answers')].forEach(function(item) {
-    item.addEventListener('click', function() {
-      console.log(item.innerHTML);
-    });
-     });
+
